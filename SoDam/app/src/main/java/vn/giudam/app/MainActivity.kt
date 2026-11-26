@@ -110,3 +110,5 @@ fun MainScreen(dao: GuestDao, voice: ((String)->Unit)->Unit, export: ()->Unit, i
 @Composable fun VoiceInput(l:String,v:String,c:(String)->Unit,vo:((String)->Unit)->Unit){OutlinedTextField(v,c,label={Text(l)},modifier=Modifier.fillMaxWidth(),singleLine=true,trailingIcon={IconButton(onClick={vo(c)}){Text("🎙️")}})}
 
 @Composable fun VoiceInput(l:String,v:String,c:(String)->Unit,vo:((String)->Unit)->Unit){OutlinedTextField(v,c,label={Text(l)},modifier=Modifier.fillMaxWidth(),singleLine=true,trailingIcon={IconButton(onClick={vo(c)}){Text("🎙️")}})}
+
+@Composable fun VoiceInput(l:String,v:String,c:(String)->Unit,vo:((String)->Unit)->Unit){OutlinedTextField(v,c,label={Text(l)},modifier=Modifier.fillMaxWidth(),singleLine=true,trailingIcon={IconButton(onClick={vo(c)}){Text("🎙️")}})}
