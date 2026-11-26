@@ -1,4 +1,4 @@
-saopackage vn.giudam.app
+package vn.giudam.app
 
 import android.Manifest
 import android.content.Intent
