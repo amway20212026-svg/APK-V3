@@ -1,5 +1,6 @@
 package vn.giudam.app
 
+import androidx.compose.foundation.verticalScroll
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -104,3 +105,4 @@ fun MainScreen(dao: GuestDao, voice: ((String)->Unit)->Unit, export: ()->Unit, i
     }
 }
 @Composable fun VoiceInput(label:String,value:String,onChange:(String)->Unit,voice:((String)->Unit)->Unit){OutlinedTextField(value=value,onValueChange=onChange,label={Text(label)},modifier=Modifier.fillMaxWidth(),trailingIcon={IconButton(onClick={voice(onChange)}){Text("🎙️")}})}}
+@Composable fun VoiceInput(l:String,v:String,c:(String)->Unit,vo:((String)->Unit)->Unit){OutlinedTextField(v,c,label={Text(l)},modifier=Modifier.fillMaxWidth(),singleLine=true,trailingIcon={IconButton(onClick={vo(c)}){Text("🎙️")}})}
