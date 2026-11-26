@@ -12,10 +12,16 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - uses: android-actions/setup-android@v3
+      - name: Accept Android SDK Licenses
+        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null 2>&1 || true
       - name: Build Debug APK
         working-directory: SoDam
-        run: chmod +x gradlew && ./gradlew assembleDebug
+        run: |
+          if [ -f "./gradlew" ]; then
+            chmod +x gradlew && ./gradlew assembleDebug
+          else
+            gradle assembleDebug
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: SoDam-debug-apk
