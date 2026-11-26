@@ -1,8 +1,5 @@
-name: Build Android APK
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+name: Build APK
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,17 +9,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Accept Android SDK Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null 2>&1 || true
+      - uses: gradle/actions/setup-gradle@v4
       - name: Build Debug APK
-        working-directory: SoDam
         run: |
-          if [ -f "./gradlew" ]; then
-            chmod +x gradlew && ./gradlew assembleDebug
-          else
-            gradle assembleDebug
-          fi
+          cd "$(dirname "$(find . -name 'build.gradle*' | head -n 1)")"
+          echo "kotlin.jvm.target.validation.mode=ignore" >> gradle.properties
+          [ -f ./gradlew ] && chmod +x gradlew && ./gradlew assembleDebug || gradle assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: SoDam-debug-apk
-          path: SoDam/app/build/outputs/apk/debug/*.apk
+          name: SoDam-debug
+          path: "**/build/outputs/apk/debug/*.apk"
+          
