@@ -1,4 +1,4 @@
-package vn.giudam.app
+saopackage vn.giudam.app
 
 import android.Manifest
 import android.content.Intent
@@ -103,4 +103,4 @@ fun MainScreen(dao: GuestDao, voice: ((String)->Unit)->Unit, export: ()->Unit, i
         if(showSettings) AlertDialog(onDismissRequest={showSettings=false},title={Text("Sao lưu dữ liệu")},text={Text("Dữ liệu lưu offline. Xuất tệp định kỳ để tránh mất dữ liệu khi đổi máy.")},confirmButton={TextButton(onClick={export();showSettings=false}){Text("Xuất tệp")}},dismissButton={TextButton(onClick={import();showSettings=false}){Text("Khôi phục")}})
     }
 }
-@Composable fun VoiceInput(label:String,value:String,onChange:(String)->Unit,voice:((String)->Unit)->Unit){OutlinedTextField(value=value,onValueChange=onChange,label={Text(label)},modifier=Modifier.fillMaxWidth(),trailingIcon={IconButton(onClick={voice(onChange)}){Text("🎙️")}})}
+@Composable fun VoiceInput(label:String,value:String,onChange:(String)->Unit,voice:((String)->Unit)->Unit){OutlinedTextField(value=value,onValueChange=onChange,label={Text(label)},modifier=Modifier.fillMaxWidth(),trailingIcon={IconButton(onClick={voice(onChange)}){Text("🎙️")}})}}
